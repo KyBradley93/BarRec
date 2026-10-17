@@ -23,30 +23,40 @@ def get_liquor_choice():
 def get_pref_choice():
     print(drink_preference)
 
+    drink_index = []
+
     chosen_pref = (input('sweet or strong?'))
 
     while chosen_pref not in drink_preference:
             print('Must pick sweet or strong')
             chosen_pref = input('sweet or strong?')
 
-    return int(chosen_pref)
+    if chosen_pref == 'sweet':
+         drink_index.append(0)
+    
+    if chosen_pref == 'strong':
+         drink_index.append(1)
+
+    return drink_index
 
 def get_drink_recs():
     liquor_choice = get_liquor_choice()
     pref_choice = get_pref_choice()
     choices = []
 
-    while liquor_choice and pref_choice:
-        if liquor_choice == 'vodka':
-            choices.append(vodka_drinks[pref_choice])
-        elif liquor_choice == 'rum':
-            choices.append(rum_drinks[pref_choice])
-        elif liquor_choice == 'gin':
-            choices.append(gin_drinks[pref_choice])
-        elif liquor_choice == 'tequila':
-            choices.append(tequila_drinks[pref_choice])
-        elif liquor_choice == 'whiskey':
-            choices.append(whiskey_drinks[pref_choice])
+
+    pref = int(pref_choice[0])
+
+    if liquor_choice == 'vodka':
+        choices = vodka_drinks[pref]
+    elif liquor_choice == 'rum':
+        choices = rum_drinks[pref]
+    elif liquor_choice == 'gin':
+        choices = gin_drinks[pref]
+    elif liquor_choice == 'tequila':
+        choices = tequila_drinks[pref]
+    elif liquor_choice == 'whiskey':
+        choices = whiskey_drinks[pref]
 
     return choices
 

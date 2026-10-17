@@ -23,6 +23,7 @@ def get_style_choice():
 
 def get_pref_choice():
     print(food_preference)
+    food_index = []
 
     chosen_pref = (input('light or heavy?'))
 
@@ -30,24 +31,31 @@ def get_pref_choice():
             print('Must pick light or heavy')
             chosen_pref = input('light or heavy?')
 
-    return int(chosen_pref)
+    if chosen_pref == 'light':
+         food_index.append(0)
+    
+    if chosen_pref == 'heavy':
+         food_index.append(1)
+
+    return food_index
 
 def get_food_recs():
     style_choice = get_style_choice()
     pref_choice = get_pref_choice()
     choices = []
 
-    while style_choice and pref_choice:
-        if style_choice == 'seafood':
-            choices.append(seafood_choices[pref_choice])
-        elif style_choice == 'island':
-            choices.append(island_choices[pref_choice])
-        elif style_choice == 'asin':
-            choices.append(asian_choices[pref_choice])
-        elif style_choice == 'spanish':
-            choices.append(spanish_choices[pref_choice])
-        elif style_choice == 'southern':
-            choices.append(southern_choices[pref_choice])
+    pref = int(pref_choice[0])
+    
+    if style_choice == 'seafood':
+        choices = seafood_choices[pref]
+    elif style_choice == 'island':
+        choices = island_choices[pref]
+    elif style_choice == 'asian':
+        choices = asian_choices[pref]
+    elif style_choice == 'spanish':
+        choices = spanish_choices[pref]
+    elif style_choice == 'southern':
+        choices = southern_choices[pref]
 
     return choices
 
@@ -61,7 +69,7 @@ def pick_dessert():
         print('Please pick 1, 2, or 3')
         choice = input('Pick 1, 2, or 3!')
 
-    return choice[int(choice) - 1]
+    return desserts[int(choice) - 1]
     
 
 
